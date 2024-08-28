@@ -1,8 +1,13 @@
-import io.github.bonigarcia.wdm.WebDriverManager;
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 
 public class Test2 {
@@ -15,6 +20,9 @@ public class Test2 {
         WebDriver driver =new ChromeDriver();
 
         driver.get("https://crm.dev.limarktech.com/signin");
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
+        WebElement basicEmailElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("basic_email")));
 
         driver.findElement(By.id("basic_email")).sendKeys("TestUser");
         driver.findElement(By.id("basic_password")).sendKeys("Limark123");
